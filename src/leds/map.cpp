@@ -32,17 +32,18 @@ uint8_t NUCLEUS_7 = 28;
 uint8_t NUCLEUS_8 = 29;
 uint8_t AXON_1 = 30;
 uint8_t AXON_2 = 31;
+uint8_t ALL_OF_STRIP_1 = 32;
 
-blob_data_t blobData[32] { 
+blob_data_t blobData[50] { 
     // numPixels, offset, stripID
      {24, 0, 1}, //orb1
-     {24, 2, 1}, //orb2
-     {24, 3, 1}, //orb3
-     {24, 4, 1}, //orb4
-     {24, 5, 1}, //orb5
-     {24, 6, 1}, //orb6
-     {24, 7, 1}, //orb7
-     {24, 8, 1}, //orb8
+     {24, 24, 1}, //orb2
+     {24, 48, 1}, //orb3
+     {24, 72, 1}, //orb4
+     {24, 96, 1}, //orb5
+     {24, 120, 1}, //orb6
+     {24, 144, 1}, //orb7
+     {24, 168, 1}, //orb8
      {24, 9, 1}, //orb9
      {24, 10, 1}, //orb10
      {24, 11, 1}, //orb11
@@ -66,7 +67,8 @@ blob_data_t blobData[32] {
      {24, 29, 1}, //nucleus7
      {24, 30, 1}, //nucleus8
      {150, 31, 1}, //axon1
-     {150, 32, 1} //axon2
+     {150, 32, 1}, //axon2
+     {192, 0, 1} // all of strip 1
     };
 
 // looks at the details of the blob data and creates a blob
@@ -75,16 +77,15 @@ blob_t getBlob(uint8_t blobName){
     blob.numPixels = blobData[blobName].numPixels;
     blob.leds = leds1;
 
+    // TODO - make `blob.leds` actually based off of the address in `blobData`
+
     // switch (blobData[blobName].stripID)
     // {
     //     case 1:
     //         //TODO fix this
-    //         blob.leds = &leds1 [blobData[blobName].offset];
+    //         blob.leds = leds1 [blobData[blobName].offset];
     //         break;
-    
-        
     // }
-
     
     return blob;
 }

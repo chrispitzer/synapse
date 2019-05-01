@@ -13,7 +13,6 @@ CRGB leds2[NUM_LEDS];
 CRGB leds3[NUM_LEDS];
 CRGB leds4[NUM_LEDS];
 CRGB leds5[NUM_LEDS];
-uint8_t gHue = 0; // rotating "base color" used by many of the patterns
 
 void ledSetup() {
 
@@ -21,25 +20,3 @@ void ledSetup() {
     FastLED.setBrightness( BRIGHTNESS );
 }
 
-void ledLoop() {
-
-    Serial.println("myBlob: ");
-    blob_t myBlob = getBlob(ORB_5);
-    Serial.print(myBlob.numPixels);
-
-    // FastLED's built-in rainbow generator
-    fill_rainbow( leds1, NUM_LEDS, gHue, 85);
-    // send the 'leds' array out to the actual LED strip
-    FastLED.show();  
-    // insert a delay to keep the framerate modest
-    FastLED.delay(700); 
-    // do some periodic updates
-
-    gHue+=85;  // slowly cycle the "base color" through the rainbow
-
-}
-
-void affectLeds() {
-    fill_solid(leds1, NUM_LEDS, CRGB(0,220,125));
-    FastLED.delay(100);
-}

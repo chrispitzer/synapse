@@ -7,12 +7,15 @@
     #include "leds.h"
 
     // these are my structs
+
+    // this is the data describing where a blob is located in an led strip
     struct blob_data_t {
         uint16_t numPixels;
         uint16_t offset;
         uint16_t stripID;
     };
 
+    // this is the blob structure itself
     struct blob_t {
         uint16_t numPixels;
         CRGB *leds;
@@ -53,6 +56,7 @@
     extern uint8_t NUCLEUS_8;
     extern uint8_t AXON_1;
     extern uint8_t AXON_2;
+    extern uint8_t ALL_OF_STRIP_1;
 
     extern blob_data_t blobData[];
 

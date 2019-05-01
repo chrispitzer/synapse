@@ -10,9 +10,7 @@
     #include "map.h"
 
     // these are the functions inside of my file
-    void ledLoop();
     void ledSetup();
-    void affectLeds();
 
     // these are the data inside of my file
     extern CRGB leds1[];
