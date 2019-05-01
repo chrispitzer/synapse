@@ -1,10 +1,14 @@
 #include <Arduino.h>
 #include "sonar/sonar.h"
 #include "leds/leds.h"
+#include "animations/animations.h"
 
 
 void coreOneLoop() {
-    ledLoop();
+    // this should be called at a predictable framerate
+    // TODO: set frame frate - maybe divide second into 30 fps? or google it
+    // 10 milliseconds per frame / 100 fps
+    runAnimations();
 }
 
 void coreZeroLoop() {
