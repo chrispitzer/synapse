@@ -1,5 +1,6 @@
 #include "map.h"
 
+// these are each blob's name and location in the blobData array
 uint8_t ORB_1 = 0;
 uint8_t ORB_2 = 1;
 uint8_t ORB_3 = 2;
@@ -36,39 +37,39 @@ uint8_t ALL_OF_STRIP_1 = 32;
 
 blob_data_t blobData[50] { 
     // numPixels, offset, stripID
-     {24, 0, 1}, //orb1
-     {24, 24, 1}, //orb2
-     {24, 48, 1}, //orb3
-     {24, 72, 1}, //orb4
-     {24, 96, 1}, //orb5
-     {24, 120, 1}, //orb6
-     {24, 144, 1}, //orb7
-     {24, 168, 1}, //orb8
-     {24, 9, 1}, //orb9
-     {24, 10, 1}, //orb10
-     {24, 11, 1}, //orb11
-     {24, 12, 1}, //orb12
-     {24, 13, 1}, //orb13
-     {24, 14, 1}, //orb14
-     {24, 15, 1}, //orb15
-     {24, 16, 1}, //orb16
-     {24, 17, 1}, //orb17
-     {24, 18, 1}, //orb18
-     {24, 19, 1}, //orb19
-     {24, 20, 1}, //orb20
-     {24, 21, 1}, //orb21
-     {24, 22, 1}, //orb22
-     {24, 23, 1}, //nucleus1
-     {24, 24, 1}, //nucleus2
-     {24, 25, 1}, //nucleus3
-     {24, 26, 1}, //nucleus4
-     {24, 27, 1}, //nucleus5
-     {24, 28, 1}, //nucleus6
-     {24, 29, 1}, //nucleus7
-     {24, 30, 1}, //nucleus8
-     {150, 31, 1}, //axon1
-     {150, 32, 1}, //axon2
-     {192, 0, 1} // all of strip 1
+     {24, 0, 1},    // orb1
+     {24, 24, 1},   // orb2
+     {24, 48, 1},   // orb3
+     {24, 72, 1},   // orb4
+     {24, 96, 1},   // orb5
+     {24, 120, 1},  // orb6
+     {24, 144, 1},  // orb7
+     {24, 168, 1},  // orb8
+     {24, 9, 1},    // orb9
+     {24, 10, 1},   // orb10
+     {24, 11, 1},   // orb11
+     {24, 12, 1},   // orb12
+     {24, 13, 1},   // orb13
+     {24, 14, 1},   // orb14
+     {24, 15, 1},   // orb15
+     {24, 16, 1},   // orb16
+     {24, 17, 1},   // orb17
+     {24, 18, 1},   // orb18
+     {24, 19, 1},   // orb19
+     {24, 20, 1},   // orb20
+     {24, 21, 1},   // orb21
+     {24, 22, 1},   // orb22
+     {24, 23, 1},   // nucleus1
+     {24, 24, 1},   // nucleus2
+     {24, 25, 1},   // nucleus3
+     {24, 26, 1},   // nucleus4
+     {24, 27, 1},   // nucleus5
+     {24, 28, 1},   // nucleus6
+     {24, 29, 1},   // nucleus7
+     {24, 30, 1},   // nucleus8
+     {150, 31, 1},  // axon1
+     {150, 32, 1},  // axon2
+     {192, 0, 1}    // all of strip 1
     };
 
 // looks at the details of the blob data and creates a blob
