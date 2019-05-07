@@ -28,7 +28,7 @@ void setup() {
 
   ledSetup();
   sonarSetup();
-
+  setupPulseList();
 
   // This will run some stuff on core "0".
   xTaskCreatePinnedToCore(

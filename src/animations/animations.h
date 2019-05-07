@@ -11,7 +11,8 @@
     void runAnimations();
     void runBackground();
     void runActionPotential();
-    void runPulse();
+    void runPulses();
+    void setupPulseList();
 
     // these are the data inside of my file
     extern bool isPulseRunning;
