@@ -73,19 +73,41 @@ blob_data_t blobData[50] {
 
 // looks at the details of the blob data and creates a blob
 blob_t getBlob(uint8_t blobName){
+    
+    // strip is a pointer to a CRGB
+    // all pointers can be treated like arrays
+    CRGB *strip;
+    blob_data_t thisBlobData = blobData[blobName];
+
     blob_t blob;
-    blob.numPixels = blobData[blobName].numPixels;
-    blob.leds = leds1;
+    blob.numPixels = thisBlobData.numPixels;
 
-    // TODO - make `blob.leds` actually based off of the address in `blobData`
+    switch (blobData[blobName].stripID)
+    {
+        case 1:
+            strip = leds1;
+            break;
 
-    // switch (blobData[blobName].stripID)
-    // {
-    //     case 1:
-    //         //TODO fix this
-    //         blob.leds = leds1 [blobData[blobName].offset];
-    //         break;
-    // }
+        case 2:
+            strip = leds2;
+            break;
+
+        case 3:
+            strip = leds3;
+            break;
+
+        case 4:
+            strip = leds4;
+            break;
+        
+        case 5:
+            strip = leds5;
+            break;
+    }
+
+    // Since strip is a pointer, we can just add a number to it and it will
+    // reference the memory location that is offset the distance down from its original address
+    blob.leds = strip + thisBlobData.offset;
     
     return blob;
 }

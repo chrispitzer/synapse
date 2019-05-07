@@ -15,8 +15,11 @@ CRGB leds4[NUM_LEDS];
 CRGB leds5[NUM_LEDS];
 
 void ledSetup() {
+    //TODO set up all led strips
 
     FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds1, NUM_LEDS);
     FastLED.setBrightness( BRIGHTNESS );
 }
 
+// how to get the red value out of this led pixel
+// uint8_t amountRed = blob.leds[0].red;

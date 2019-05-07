@@ -1,6 +1,7 @@
 #include "animations.h"
 
 #define MAX_NUM_OF_PULSES 40
+#define DURATION_OF_PULSE 100 // 100 frames/second
 
 // list of currently active pulses
 // - frameNum - what frame each of them are on
@@ -45,13 +46,15 @@ void startPulsePair(uint8_t startBlobID, uint8_t endBlobID, uint8_t brightness, 
     createPulse(endBlobID, brightness, delay);
 }
 
-void runPulseAnimationFrame(uint8_t pulseIndex){
-    Serial.println("Animation running");
+void runPulseAnimationFrame(pulse_t pulse){    
+    blob_t blob = getBlob(pulse.blobID);
+    
+    // fill leds of blob with a color
+    // TODO: what color?
+    fill_solid(blob.leds, blob.numPixels, CRGB(255,0,0));
 }
 
 void runPulses() {
-    Serial.println("running PULSES");
-
     //loop through each pulse and animate a frame
     for(uint8_t i = 0; i < MAX_NUM_OF_PULSES; i++)
     {
@@ -64,7 +67,12 @@ void runPulses() {
             continue;
         }
 
-        runPulseAnimationFrame(i);
+        runPulseAnimationFrame(pulses[i]);
+        pulses[i].frameNumber += 1;
+
+        if (pulses[i].frameNumber >= DURATION_OF_PULSE) {
+            pulses[i].isFinished = true;
+        }
     }
 }
 

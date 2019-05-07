@@ -5,7 +5,6 @@
     // these are my imports
     #include <Arduino.h>
     #include "../leds/leds.h"
-    #include "../leds/map.h"
 
     // these are the functions inside of my file
     void runAnimations();
