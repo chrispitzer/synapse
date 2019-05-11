@@ -21,7 +21,12 @@
         CRGB *leds;
     };
 
-
+    // orbs are collections of an orb, its parent nucleus, and its delay (related to the distance from nucleus)
+    struct orb_nucleus_pair_t {
+        uint8_t blobID; // the blob of LEDs inside the orb
+        uint8_t nucleusID; // the blob of LEDs that are its paired nucleus
+        uint16_t delayFrameNumber;
+    };
 
     // these are the data inside of my file
     extern uint8_t ORB_1;
@@ -62,6 +67,7 @@
 
     // these are the functions inside of my file
     blob_t getBlob(uint8_t);
+    orb_nucleus_pair_t getRandomOrbNucleusPair();
 
 
 

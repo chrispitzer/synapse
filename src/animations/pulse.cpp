@@ -1,7 +1,7 @@
 #include "animations.h"
 
 #define MAX_NUM_OF_PULSES 40
-#define DURATION_OF_PULSE 100 // 100 frames/second
+#define DURATION_OF_PULSE 80 // 100 frames/second
 
 // list of currently active pulses
 // - frameNum - what frame each of them are on
@@ -46,7 +46,7 @@ void startPulsePair(uint8_t startBlobID, uint8_t endBlobID, uint8_t brightness, 
     createPulse(endBlobID, brightness, delay);
 }
 
-void runPulseAnimationFrame(pulse_t pulse){    
+void runPulseAnimationFrame(pulse_t pulse){
     blob_t blob = getBlob(pulse.blobID);
     
     // fill leds of blob with a color
@@ -58,18 +58,22 @@ void runPulses() {
     //loop through each pulse and animate a frame
     for(uint8_t i = 0; i < MAX_NUM_OF_PULSES; i++)
     {
+        // if this pulse is done with its animation, skip it
         if (pulses[i].isFinished) {
             continue;
         }
 
+        // if pulse is being delayed, count down delay
         if (pulses[i].delayFrameNumber > 0) {
             pulses[i].delayFrameNumber -= 1;
             continue;
         }
 
+        // run animation
         runPulseAnimationFrame(pulses[i]);
         pulses[i].frameNumber += 1;
 
+        // if pulse has reached its end, set it to done
         if (pulses[i].frameNumber >= DURATION_OF_PULSE) {
             pulses[i].isFinished = true;
         }

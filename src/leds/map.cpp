@@ -35,6 +35,9 @@ uint8_t AXON_1 = 30;
 uint8_t AXON_2 = 31;
 uint8_t ALL_OF_STRIP_1 = 32;
 
+
+//TODO: orbs need a paired nucleus side... make an orb struct?
+//TODO: orbs need a preset delay for the pulse to use?
 blob_data_t blobData[50] { 
     // numPixels, offset, stripID
      {24, 0, 1},    // orb1
@@ -71,6 +74,35 @@ blob_data_t blobData[50] {
      {150, 32, 1},  // axon2
      {192, 0, 1}    // all of strip 1
     };
+
+//TODO: substitute in the names of the orbs and nucleus
+orb_nucleus_pair_t orb_nucleus_pairs[18] {
+    // orb blob, nucleus blob, delayFrameNumber
+    {ORB_1, NUCLEUS_1, 25},      // orb1     nucleus1
+    {1, 22, 50},      // orb2     nucleus1
+    {2, 22, 100},     // orb3     nucleus1
+    {3, 23, 25},      // orb4     nucleus2
+    {4, 23, 50},      // orb5     nucleus2
+    {5, 23, 100},     // orb6     nucleus2
+    {6, 24, 25},      // orb7     nucleus3
+    {7, 24, 50},      // orb8     nucleus3
+    {8, 24, 100},     // orb9     nucleus3
+    {9, 25, 25},      // orb10    nucleus4
+    {10, 25, 50},     // orb11    nucleus4
+    {11, 25, 100},    // orb12    nucleus4
+    {12, 26, 25},     // orb13    nucleus5
+    {13, 26, 50},     // orb14    nucleus5
+    {14, 26, 100},    // orb15    nucleus5
+    {15, 27, 25},     // orb13    nucleus6
+    {16, 27, 50},     // orb14    nucleus6
+    {17, 27, 100}     // orb15    nucleus6
+};
+
+
+orb_nucleus_pair_t getRandomOrbNucleusPair() {
+    uint8_t index = rand() % 18; // random number in the range of 0-18
+    return orb_nucleus_pairs[index];
+};
 
 // looks at the details of the blob data and creates a blob
 blob_t getBlob(uint8_t blobName){
