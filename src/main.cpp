@@ -4,29 +4,24 @@
 #include "animations/animations.h"
 #include "controller/controller.h"
 
-
-void coreOneLoop() {
-  // this should be called at a predictable framerate
-  // TODO: set frame frate - maybe divide second into 30 fps? or google it
-  // 10 milliseconds per frame / 100 fps
-  
-  runController();
-  runAnimations();
-  
-}
+#define FRAMES_PER_SECOND 100
 
 void coreZeroLoop() {
-  // TODO: make this "runSensors"
   runSonar();
+  delay(1000/FRAMES_PER_SECOND); // frame rate
 }
 
+void coreOneLoop() {
+  runController();
+  runAnimations();
+  delay(1000/FRAMES_PER_SECOND); // frame rate
+}
 
 void coreTask( void * pvParameters ) {
   while(true){
     coreZeroLoop();
   }
 }
-
 
 void setup() {
   Serial.begin(9600);
