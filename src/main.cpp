@@ -2,17 +2,22 @@
 #include "sonar/sonar.h"
 #include "leds/leds.h"
 #include "animations/animations.h"
+#include "controller/controller.h"
 
 
 void coreOneLoop() {
-    // this should be called at a predictable framerate
-    // TODO: set frame frate - maybe divide second into 30 fps? or google it
-    // 10 milliseconds per frame / 100 fps
-    runAnimations();
+  // this should be called at a predictable framerate
+  // TODO: set frame frate - maybe divide second into 30 fps? or google it
+  // 10 milliseconds per frame / 100 fps
+  
+  runController();
+  runAnimations();
+  
 }
 
 void coreZeroLoop() {
-  readSensors();
+  // TODO: make this "runSensors"
+  runSonar();
 }
 
 
@@ -27,7 +32,7 @@ void setup() {
   Serial.begin(9600);
 
   ledSetup();
-  sonarSetup();
+  setupSonar();
   setupPulseList();
 
   // This will run some stuff on core "0".

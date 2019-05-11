@@ -32,39 +32,6 @@ sonar_t sonars[NUMBER_OF_SENSORS] {
   {4, 6, {}, 0, false}     // sonar 5
 };
 
-void runSonar() {
-  // Note: this goes through each sonar one at a time. How to parallelize?
-  // Maybe have two "for" statements?
-  for(uint8_t i = 0; i < NUMBER_OF_SENSORS; i++)
-  {
-    uint16_t duration; 
-    uint16_t distance;
-    digitalWrite(sonars[i].triggerPin, LOW);  
-    delayMicroseconds(2); 
-    
-    digitalWrite(sonars[i].triggerPin, HIGH);
-    delayMicroseconds(10); 
-    
-    digitalWrite(sonars[i].triggerPin, LOW);
-    
-    // pulsein watches for the pin to go from a low value to a high value, 
-    // starts timing, and then stops when the values goes low again
-    duration = pulseIn(sonars[i].echoPin, HIGH);
-
-    // converts reading to distance in centimeters
-    distance = (duration/2) / 29.1;
-
-    // add distance to the sonar's log
-    logSonarReading(sonars[i], distance);
-
-    // TODO: would this be the place to check the running average and 
-    // change the state of the sonar?
-    
-
-    
-  }
-}
-
 void logSonarReading(sonar_t sonar, uint16_t distance) {
   // add distance to the sonar's log array
   sonar.distanceLog[sonar.distanceLogCursor] = distance;
@@ -122,4 +89,37 @@ void setupSonar() {
     pinMode(sonars[i].triggerPin, OUTPUT);
     pinMode(sonars[i].echoPin, INPUT);
   } 
+}
+
+void runSonar() {
+  // Note: this goes through each sonar one at a time. How to parallelize?
+  // Maybe have two "for" statements?
+  for(uint8_t i = 0; i < NUMBER_OF_SENSORS; i++)
+  {
+    uint16_t duration; 
+    uint16_t distance;
+    digitalWrite(sonars[i].triggerPin, LOW);  
+    delayMicroseconds(2); 
+    
+    digitalWrite(sonars[i].triggerPin, HIGH);
+    delayMicroseconds(10); 
+    
+    digitalWrite(sonars[i].triggerPin, LOW);
+    
+    // pulsein watches for the pin to go from a low value to a high value, 
+    // starts timing, and then stops when the values goes low again
+    duration = pulseIn(sonars[i].echoPin, HIGH);
+
+    // converts reading to distance in centimeters
+    distance = (duration/2) / 29.1;
+
+    // add distance to the sonar's log
+    logSonarReading(sonars[i], distance);
+
+    // TODO: would this be the place to check the running average and 
+    // change the state of the sonar?
+    
+
+    
+  }
 }
