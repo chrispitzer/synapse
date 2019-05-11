@@ -7,7 +7,8 @@
 
     // these are the functions inside of my sonar file
     void readSensors();
-    void sonarSetup();
+    void setupSonar();
+    void runSonar();
 
     // these are the data inside of my sonar file
     extern int distanceFromSonarA;

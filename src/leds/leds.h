@@ -6,7 +6,6 @@
     #include <Arduino.h>
     #define FASTLED_ALLOW_INTERRUPTS 0
     #include <FastLED.h>
-    #include "../sonar/sonar.h"
     #include "map.h"
 
     // these are the functions inside of my file
