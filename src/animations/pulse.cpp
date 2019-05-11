@@ -42,6 +42,10 @@ void createPulse(uint8_t blobID, uint8_t brightness, uint16_t delay) {
 void startPulsePair(uint8_t startBlobID, uint8_t endBlobID, uint8_t brightness, uint16_t delay) {
     // delay is milliseconds
 
+    if (!isPulseRunning) {
+        return;
+    }
+    
     createPulse(startBlobID, brightness, 0);
     createPulse(endBlobID, brightness, delay);
 }
